@@ -4,12 +4,16 @@ This repo contains an installer for setting up a new system to run [Rhinohawk RO
 
 :warning: Use the installer at your own risk! :warning:
 
-The installer will modify your system by installing many packages and checking out code into your home directory. We encourage you to read through the install script before running it.
+The installer will modify your system by installing many packages and checking out code into your home directory. 
+
+We encourage you to read through the install script before running it.
+
+# Running the installer
 
 To begin the installation process, type:
 ```
 ./install.sh
 ```
 
-You'll be promoted to begin the installation, and then periodically by sudo.
+You'll be prompted to begin the installation, and then periodically by sudo for your password to escalate privilege.
 
