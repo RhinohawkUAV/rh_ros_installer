@@ -8,7 +8,7 @@ The installer will modify your system by installing many packages and checking o
 
 We encourage you to read through the install script before running it.
 
-# Running the installer
+## Running the installer
 
 To begin the installation process, type:
 ```
