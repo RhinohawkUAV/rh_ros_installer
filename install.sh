@@ -29,7 +29,7 @@ CATKIN_WS_DIR=$HOME/catkin_ws
 
 # Git repositories
 ARDUPILOT_GIT=https://github.com/ArduPilot/ardupilot
-RHINOHAWK_GIT=https://github.com:RhinohawkUAV/rh_ros.git
+RHINOHAWK_GIT=https://github.com/RhinohawkUAV/rh_ros.git
 GSCAM_GIT=https://github.com/ros-drivers/gscam.git
 
 
@@ -80,7 +80,7 @@ source ~/.bashrc
 ####################################################################
 mkdir -p $SRC_DIR
 cd $SRC_DIR
-git clone ARDUPILOT_GIT
+git clone $ARDUPILOT_GIT
 cd ardupilot
 git submodule update --init --recursive
 ./Tools/scripts/install-prereqs-ubuntu.sh -y
