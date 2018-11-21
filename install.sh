@@ -66,6 +66,7 @@ sleep 1
 
 DIST=$ROS_DIST
 echo "Installing ROS $DIST"
+set -x
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 sudo apt-get update
@@ -74,10 +75,13 @@ sudo rosdep init
 rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
+set +x
 
 ####################################################################
 # Install ArduPilot
 ####################################################################
+echo "Installing ArduPilot"
+set -x
 mkdir -p $SRC_DIR
 cd $SRC_DIR
 git clone $ARDUPILOT_GIT
@@ -87,54 +91,58 @@ git submodule update --init --recursive
 echo "export PATH=$PATH:$HOME/src/ardupilot/Tools/autotest" >> ~/.bashrc
 echo "export PATH=/usr/lib/ccache:$PATH" >> ~/.bashrc
 source ~/.bashrc
-
 # Add our custom starting locations for the simulator
 cat $INSTALLER_DIR/locations.txt >> $SRC_DIR/ardupilot/Tools/autotest/locations.txt
-
+set +x
 
 ####################################################################
 # Install Rhinohawk Dependencies
 ####################################################################
 echo "Installing additional ROS packages"
+set -x
 $INSTALL_CMD libav-tools gphoto2 libgphoto2-dev \
     build-essential ros-$DIST-vision-opencv ros-$DIST-polled-camera \
     ros-$DIST-camera-info-manager ros-$DIST-camera-info-manager-py \
     ros-$DIST-tf ros-$DIST-image-proc ros-$DIST-rosbridge-server \
     ros-$DIST-mavros
-
 sudo /opt/ros/kinetic/lib/mavros/install_geographiclib_datasets.sh
-
 $INSTALL_CMD ros-kinetic-rqt ros-kinetic-jsk-rqt-plugins
-
 $INSTALL_CMD python-pip
 $PYINSTALL_CMD --upgrade pip==9.0.3
 $PYINSTALL_CMD shapely typing scikit-learn pykml
-
+set +x
 
 ####################################################################
 # Install Rhinohawk 
 ####################################################################
-
 echo "Installing Rhinohawk at $CATKIN_WS"
+set -x
 mkdir -p $CATKIN_WS_DIR/src
 cd $CATKIN_WS_DIR/src
 catkin_init_workspace
 $GIT_CLONE_CMD $RHINOHAWK_GIT
-
+set +x
 
 ####################################################################
 # Install Gscam for 3dr Solo Interoperability 
 ####################################################################
+echo "Install GSCAM"
+set -x
 $INSTALL_CMD gstreamer1.0-tools libgstreamer1.0-dev \
 	libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
 cd $CATKIN_WS_DIR/src
 $GIT_CLONE_CMD $GSCAM_GIT
 cd $CATKIN_WS_DIR
+set +x
 
-
+####################################################################
+# Run Build
+####################################################################
 echo "Running Catkin Make"
+set -x
 cd $CATKIN_WS_DIR
 catkin_make install
+set +x
 
 echo
 echo "Rhinohawk has been successfully installed."
