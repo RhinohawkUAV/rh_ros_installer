@@ -7,10 +7,11 @@
 set -e
 
 # The location of this script
-INSTALLER_DIR=$(dirname "$0")
+INSTALLER_DIR=$(dirname "$(readlink -f "$0")")
 
 # ROS distribution to install 
 ROS_DIST=kinetic
+DIST=$ROS_DIST
 
 # Installation command for system packages
 INSTALL_CMD="sudo apt-get install -y"
@@ -64,7 +65,6 @@ sleep 1
 # From http://wiki.ros.org/kinetic/Installation/Ubuntu
 ####################################################################
 
-DIST=$ROS_DIST
 echo "Installing ROS $DIST"
 set -x
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
