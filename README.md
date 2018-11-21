@@ -11,8 +11,8 @@ We encourage you to read through the install script before running it.
 ## Preparing your system
 
 1) The best way to run this system for development is by using a virtual machine. For example, you can use Virtualbox, Parallels, or VMWare Fusion. Alternatively, you can install on bare metal, such as an UpBoard or a PC system.
-2) Download and install a version of Ubuntu 14. We recommend [Lubuntu 14.04](http://cdimage.ubuntu.com/lubuntu/releases/14.04/release).
-3) If promoted, do NOT upgrade to the next version of Ubuntu. Rhinohawk will only run on Ubuntu 14.
+2) Download and install a version of Ubuntu 16. We recommend [Lubuntu 14.04](http://cdimage.ubuntu.com/lubuntu/releases/16.04/release).
+3) If promoted, do NOT upgrade to the next version of Ubuntu. Rhinohawk will only run on Ubuntu 16.
 4) Install git (`sudo apt-get install -y git`)
 
 ## Running the installer
