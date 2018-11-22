@@ -73,7 +73,7 @@ $INSTALL_CMD ros-$DIST-desktop
 sudo rosdep init
 rosdep update
 echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+source /opt/ros/kinetic/setup.bash
 set +x
 
 ####################################################################
@@ -88,7 +88,7 @@ cd ardupilot
 git submodule update --init --recursive
 ./Tools/scripts/install-prereqs-ubuntu.sh -y
 echo "export PATH=/usr/lib/ccache:\$PATH:\$HOME/src/ardupilot/Tools/autotest" >> ~/.bashrc
-source ~/.bashrc
+export PATH=/usr/lib/ccache:$PATH:$HOME/src/ardupilot/Tools/autotest
 # Add our custom starting locations for the simulator
 cat $INSTALLER_DIR/locations.txt >> $SRC_DIR/ardupilot/Tools/autotest/locations.txt
 set +x
