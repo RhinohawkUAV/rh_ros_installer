@@ -13,6 +13,11 @@ INSTALLER_DIR=$(dirname "$(readlink -f "$0")")
 ROS_DIST=kinetic
 DIST=$ROS_DIST
 
+# Git repositories
+ARDUPILOT_GIT=https://github.com/ArduPilot/ardupilot
+RHINOHAWK_GIT=https://github.com/RhinohawkUAV/rh_ros.git
+GSCAM_GIT=https://github.com/ros-drivers/gscam.git
+
 # Installation command for system packages
 INSTALL_CMD="sudo apt-get install -y"
 
@@ -27,12 +32,6 @@ SRC_DIR=$HOME/src
 
 # Catkin workspace for ROS nodes
 CATKIN_WS_DIR=$HOME/catkin_ws
-
-# Git repositories
-ARDUPILOT_GIT=https://github.com/ArduPilot/ardupilot
-RHINOHAWK_GIT=https://github.com/RhinohawkUAV/rh_ros.git
-GSCAM_GIT=https://github.com/ros-drivers/gscam.git
-
 
 # Installer Prompt
 echo
@@ -88,8 +87,7 @@ git clone $ARDUPILOT_GIT
 cd ardupilot
 git submodule update --init --recursive
 ./Tools/scripts/install-prereqs-ubuntu.sh -y
-echo "export PATH=$PATH:$HOME/src/ardupilot/Tools/autotest" >> ~/.bashrc
-echo "export PATH=/usr/lib/ccache:$PATH" >> ~/.bashrc
+echo "export PATH=/usr/lib/ccache:\$PATH:\$HOME/src/ardupilot/Tools/autotest" >> ~/.bashrc
 source ~/.bashrc
 # Add our custom starting locations for the simulator
 cat $INSTALLER_DIR/locations.txt >> $SRC_DIR/ardupilot/Tools/autotest/locations.txt
@@ -144,8 +142,12 @@ cd $CATKIN_WS_DIR
 catkin_make install
 set +x
 
+echo "source \$HOME/catkin_ws/devel/setup.bash" >> ~/.bashrc
+
 echo
 echo "Rhinohawk has been successfully installed."
+echo 
+echo "Open a new terminal or run 'source ~/.bashrc' to initialize your environment"
 echo
 
 else
