@@ -40,9 +40,10 @@ echo ".----------------------------------------."
 echo "| Welcome to the Rhinohawk ROS Installer |"
 echo "'----------------------------------------'"
 echo
-echo "This script will install:"
-echo "  - ROS $ROS_DIST using '$INSTALL_CMD ...'"
-echo "  - Required Python libraries using '$PYINSTALL_CMD ...'"
+echo "This script will:"
+echo "  - Update your system using APT"
+echo "  - Install ROS $ROS_DIST using '$INSTALL_CMD ...'"
+echo "  - Install Python libraries using '$PYINSTALL_CMD ...'"
 echo
 echo "Then it will clone these Git repositories:"
 echo "  - $ARDUPILOT_GIT into $SRC_DIR"
@@ -60,6 +61,15 @@ then
 echo "Starting installation..."
 sleep 1
 
+####################################################################
+# Update System 
+####################################################################
+
+echo "Updaing System"
+set -x
+sudo apt-get update
+sudo apt-get upgrade
+set +x
 
 ####################################################################
 # Install ROS 
@@ -70,7 +80,6 @@ echo "Installing ROS $DIST"
 set -x
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-sudo apt-get update
 $INSTALL_CMD ros-$DIST-desktop
 sudo rosdep init
 rosdep update
