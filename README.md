@@ -27,3 +27,7 @@ cd rh_ros_installer
 
 You'll be prompted to begin the installation, and then periodically by sudo for your password to escalate privilege.
 
+## Using the system
+
+Follow the instructions in the [main repository](https://github.com/RhinohawkUAV/rh_ros) to run the Rhinohawk system.
+
