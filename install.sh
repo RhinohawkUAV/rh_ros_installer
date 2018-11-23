@@ -16,6 +16,7 @@ DIST=$ROS_DIST
 # Git repositories
 ARDUPILOT_GIT=https://github.com/ArduPilot/ardupilot
 RHINOHAWK_GIT=https://github.com/RhinohawkUAV/rh_ros.git
+ALIENCONTROL_GIT=https://github.com/acschaefer/aliencontrol.git
 GSCAM_GIT=https://github.com/ros-drivers/gscam.git
 
 # Installation command for system packages
@@ -46,6 +47,7 @@ echo
 echo "Then it will clone these Git repositories:"
 echo "  - $ARDUPILOT_GIT into $SRC_DIR"
 echo "  - $RHINOHAWK_GIT into $CATKIN_WS_DIR/src"
+echo "  - $ALIENCONTROL_GIT into $CATKIN_WS_DIR/src"
 echo "  - $GSCAM_GIT into $CATKIN_WS_DIR/src"
 echo 
 echo "You can modify install locations by editing the script."
@@ -122,15 +124,23 @@ $GIT_CLONE_CMD $RHINOHAWK_GIT
 set +x
 
 ####################################################################
+# Install Alien Control
+####################################################################
+echo "Installing Alien Control"
+set -x
+cd $CATKIN_WS_DIR/src
+$GIT_CLONE_CMD $ALIENCONTROL_GIT
+set +x
+
+####################################################################
 # Install Gscam for 3dr Solo Interoperability 
 ####################################################################
-echo "Install GSCAM"
+echo "Installing GSCAM"
 set -x
 $INSTALL_CMD gstreamer1.0-tools libgstreamer1.0-dev \
 	libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
 cd $CATKIN_WS_DIR/src
 $GIT_CLONE_CMD $GSCAM_GIT
-cd $CATKIN_WS_DIR
 set +x
 
 ####################################################################
