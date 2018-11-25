@@ -113,7 +113,7 @@ $INSTALL_CMD libav-tools gphoto2 libgphoto2-dev \
     build-essential ros-$DIST-vision-opencv ros-$DIST-polled-camera \
     ros-$DIST-camera-info-manager ros-$DIST-camera-info-manager-py \
     ros-$DIST-tf ros-$DIST-image-proc ros-$DIST-rosbridge-server \
-    ros-$DIST-mavros
+    ros-$DIST-mavros ros-$DIST-pointgrey-camera-driver ros-$DIST-image-pipeline
 sudo /opt/ros/kinetic/lib/mavros/install_geographiclib_datasets.sh
 $INSTALL_CMD ros-kinetic-rqt ros-kinetic-jsk-rqt-plugins
 $INSTALL_CMD python-pip
