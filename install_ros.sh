@@ -49,12 +49,13 @@ sudo apt-get install -y \
             ros-${ROS_VERSION}-rosbridge-server \
 			ros-${ROS_VERSION}-cv-bridge\
 			ros-${ROS_VERSION}-video-stream-opencv \
-			git python3-pip
+			git python3-pip python-pip
 sudo apt-get clean autoclean
 
 # Install catkin_python3
 sudo pip3 install catkin_pkg
-sudo pip3 install scikit-learn pykml
+sudo pip3 -q install scikit-learn pykml pymavlink
+sudo pip -q install scikit-learn pykml pymavlink
 
 # update bashrc
 echo "source /opt/ros/${ROS_VERSION}/setup.bash" >> ${HOME}/.bashrc
@@ -71,8 +72,13 @@ rosdep update
 # install Ardupilot
 cd ${ARDUPILOT_SRC}
 git clone --recursive ${ARDUPILOT_GIT}
+cd ardupilot/Tools/environment_install
+sh ./install-prereqs-ubuntu.sh -y
+
+# compile arduplane for faster first time sim_vehicle.py startup
 cd ardupilot
-sh -x ./Tools/environment_install/install-prereqs-ubuntu.sh -y
+sh ./waf configure
+sh ./waf plane
 
 # Add airport location
 cat ${INSTALL_DIR}/locations.txt >> Tools/autotest/locations.txt
