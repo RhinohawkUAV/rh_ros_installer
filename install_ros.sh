@@ -73,7 +73,7 @@ rosdep update
 cd ${ARDUPILOT_SRC}
 git clone --recursive ${ARDUPILOT_GIT}
 cd ardupilot/Tools/environment_install
-sh ./install-prereqs-ubuntu.sh -y
+./install-prereqs-ubuntu.sh -y
 
 # compile arduplane for faster first time sim_vehicle.py startup
 cd ardupilot
