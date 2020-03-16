@@ -76,9 +76,9 @@ cd ardupilot/Tools/environment_install
 ./install-prereqs-ubuntu.sh -y
 
 # compile arduplane for faster first time sim_vehicle.py startup
-cd ardupilot
-sh ./waf configure
-sh ./waf plane
+cd ${ARDUPILOT_SRC}/ardupilot
+./waf configure
+./waf plane
 
 # Add airport location
 cat ${INSTALL_DIR}/locations.txt >> Tools/autotest/locations.txt
