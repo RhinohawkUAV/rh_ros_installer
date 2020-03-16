@@ -31,3 +31,7 @@ You'll be prompted to begin the installation, and then periodically by sudo for 
 
 Follow the instructions in the [main repository](https://github.com/RhinohawkUAV/rh_ros) to run the Rhinohawk system.
 
+
+# Melodic with Ubuntu Bionic 
+To run melodic with bionic all you need to do is clone this repository as usual and run ./install_ros.sh instead of ./install.sh
+
