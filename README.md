@@ -32,6 +32,30 @@ You'll be prompted to begin the installation, and then periodically by sudo for 
 Follow the instructions in the [main repository](https://github.com/RhinohawkUAV/rh_ros) to run the Rhinohawk system.
 
 
-# Melodic with Ubuntu Bionic 
-To run melodic with bionic all you need to do is clone this repository as usual and run ./install_ros.sh instead of ./install.sh
+# Melodic with Ubuntu Bionic (18.04)
+To run melodic with bionic all you need to do is clone this repository as usual. Then 
+
+```
+>> cd rh_ros_installer
+>> ./install_ros.sh
+```
+
+You will be prompted for you password once when you start. The script would run for approximately 20minutes. 
+
+After the installation is complete. You will need to run catkin_make to build the ros nodes for rh.
+
+```
+>> . ~/.bashrc
+>> cd ~/catkin_ws
+>> catkin_make
+```
+
+Once this finishes (approximately 3 minutes), re-read the .bashrc script before proceeding.
+
+```
+>> . ~/.bashrc
+```
+
+Now you should be able to run the simulations from rh_simulation.
+
 
