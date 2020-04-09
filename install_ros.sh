@@ -54,11 +54,12 @@ sudo apt-get clean autoclean
 
 # Install catkin_python3
 sudo pip3 install catkin_pkg
-sudo pip3 -q install scikit-learn pykml pymavlink
-sudo pip -q install scikit-learn pykml pymavlink
+sudo pip3 -q install scikit-learn pykml pymavlink mavproxy
+sudo pip -q install scikit-learn pykml pymavlink mavproxy
 
 # update bashrc
 echo "source /opt/ros/${ROS_VERSION}/setup.bash" >> ${HOME}/.bashrc
+echo "source ~/catkin_ws/devel/setup.bash" >> ${HOME}/.bashrc
 
 # Create directories
 mkdir -p ${CATKIN_WS}
